@@ -1,2 +1,3 @@
-# qik-intern-assignment-akash
-A task management application with a API backend and a frontend.
+# Diddit
+
+A task management application with an API backend and a frontend.
