@@ -142,5 +142,15 @@ vite.config.ts.timestamp-*
 # Git
 .gitignore
 
-# venv
+#python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+env/
+venv/
 .venv/
+ENV/
+env.bak/
+venv.bak/

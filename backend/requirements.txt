@@ -1,1 +1,6 @@
 fastapi[standard]
+motor
+pydantic
+pydantic_extra_types
+asyncio
+python-dotenv
