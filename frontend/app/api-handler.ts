@@ -1,19 +1,16 @@
-import { toast } from "sonner";
-import "dotenv/config";
+import { redirect } from "next/navigation";
 
-const url: string = process.env.URL as string;
+const url = process.env.NEXT_PUBLIC_URL as string;
 
 export async function getTasks() {
-  const fetchTasks = fetch(url)
-    .then((res) => res.json())
-    .catch((err) => toast.error(err));
-  const tasks = await fetchTasks;
-  return tasks;
+  return await fetch(url).then((res) => res.json());
+  /* TODO Add toasts */
 }
 
 export async function deleteTask(id: string) {
-  const response = await fetch(url.concat(`/${id}`), {
+  await fetch(`${url}/${id}`, {
     method: "DELETE",
-  }).catch((err) => toast.error(err));
-  return response;
+  });
+  /* TODO Add toasts */
+  redirect("/tasks");
 }

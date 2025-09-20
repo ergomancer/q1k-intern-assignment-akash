@@ -13,18 +13,12 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
 import { deleteTask } from "@/app/api-handler";
-
-function handleDelete() {
-  // Implement the delete logic here
-  toast("Task deleted");
-}
 
 export default function DeleteAlert({ id }: { id: string }) {
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
+      <AlertDialogTrigger className="text-red-500">
         <Trash2 />
       </AlertDialogTrigger>
       <AlertDialogContent>

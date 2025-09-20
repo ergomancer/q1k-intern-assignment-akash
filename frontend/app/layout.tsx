@@ -46,66 +46,67 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <header className="flex gap-4">
-            <Link href="/">
-              <NotebookTabs />
-            </Link>
-            <h1 className="text-3xl font-bold">Diddit</h1>
+          <div className="flex flex-col w-screen h-screen">
+            <header className="flex p-10 border-b justify-between">
+              <Link href="/" className="flex gap-15">
+                <NotebookTabs className="h-10 w-10" />
+                <h1 className="text-4xl font-bold">Diddit</h1>
+              </Link>
+              <ModeToggle />
+            </header>
+            <main className="flex-grow">
+              {children}
+              <Toaster richColors position="bottom-right" invert={true} />
+            </main>
+            <footer className="flex p-10 border-t justify-evenly">
+              <span>Made by @ergomancer</span>
 
-            <ModeToggle />
-          </header>
-          <main>
-            {children}
-            <Toaster richColors position="bottom-right" />
-          </main>
-          <footer className="flex gap-4">
-            <span>Made by @ergomancer</span>
+              <a
+                className=""
+                href="https://github.com/ergomancer/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github />
+              </a>
 
-            <a
-              className=""
-              href="https://github.com/ergomancer/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Github />
-            </a>
+              <a
+                className=""
+                href="https://x.com/ergomancer/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Twitter />
+              </a>
 
-            <a
-              className=""
-              href="https://x.com/ergomancer/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Twitter />
-            </a>
+              <a
+                className=""
+                href="https://linkedin.com/in/ergomancer/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Linkedin />
+              </a>
 
-            <a
-              className=""
-              href="https://linkedin.com/in/ergomancer/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Linkedin />
-            </a>
+              <a
+                className=""
+                href="mailto:akashkhetan044@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Mail />
+              </a>
 
-            <a
-              className=""
-              href="mailto:akashkhetan044@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Mail />
-            </a>
-
-            <a
-              className=""
-              href="tel:+917003686821"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Phone />
-            </a>
-          </footer>
+              <a
+                className=""
+                href="tel:+917003686821"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Phone />
+              </a>
+            </footer>
+          </div>
         </ThemeProvider>
       </body>
     </html>

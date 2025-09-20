@@ -8,45 +8,77 @@ import {
   CardFooter,
   CardAction,
 } from "@/components/ui/card";
-import { Edit2 } from "lucide-react";
+import { Edit2, Timer } from "lucide-react";
 import Link from "next/link";
 import type { TaskType } from "@/lib/types";
-import AddTaskButton from "@/components/ui/add-task-button";
 import DeleteAlert from "@/components/ui/delete-alert";
 import { getTasks } from "../api-handler";
 import { use } from "react";
+import { Badge } from "@/components/ui/badge";
 
 function Task({ task }: { task: TaskType }) {
+  const status = { completed: "green", in_progress: "cyan", pending: "indigo" };
+  const priority = { high: "red", medium: "amber", low: "rose" };
+
   return (
-    <Card className="w-72 p-4">
-      <CardHeader>
+    <Card className="w-75 p-5">
+      <CardHeader className="border-b">
         <CardTitle>{task.title}</CardTitle>
-        <CardDescription>{task.description}</CardDescription>
+        <CardDescription>
+          {/*TODO Implement colors */}
+          <div className="flex flex-evenly gap-2 pt-2">
+            <Badge className={`${status[task.status]}-500 rounded-full`}>
+              {task.status == "in_progress" ? "in progress" : task.status}
+            </Badge>
+            <Badge className={`${priority[task.priority]}-500 rounded-full`}>
+              {task.priority}
+            </Badge>
+          </div>
+        </CardDescription>
       </CardHeader>
-      <CardContent className="flex">
-        <div>
-          <p>Status: {task.status}</p>
-          <p>Priority: {task.priority}</p>
+      <CardContent className="flex flex-col gap-5">
+        {task.description}
+        <div className="flex gap-2 justify-between">
           {task.due_date ? (
-            <p>Due Date: {task.due_date}</p>
-          ) : null}
-        </div>
-        <div>
-          <CardAction className="mt-2 bg-blue-500 text-white px-4 py-2 rounded">
-            <Button variant="secondary" size="icon" className="size-8">
+            <p className="text-muted-foreground text-sm">
+              <Timer className="inline mr-2" />
+              {new Date(task["due_date"]).toLocaleDateString()}{" "}
+              {new Date(task["due_date"]).toLocaleTimeString()}
+            </p>
+          ) : (
+            <p className="text-muted-foreground text-sm">
+              <Timer className="inline mr-2" />
+              No Due Date
+            </p>
+          )}
+          <CardAction>
+            <Button
+              variant="ghost"
+              size="icon"
+              asChild
+              className="text-yellow-500"
+            >
               <Link href={`/tasks/edit/${task.id}`}>
                 <Edit2 />
               </Link>
             </Button>
           </CardAction>
-          <CardAction className="mt-2 bg-red-500 text-white px-4 py-2 rounded">
+          <CardAction>
             <DeleteAlert id={task.id} />
           </CardAction>
         </div>
       </CardContent>
-      <CardFooter>
-        <p>Created At: {task.created_at}</p>
-      <p>Updated At: {task.updated_at}</p>
+      <CardFooter className="border-t">
+        <div className="text-muted-foreground text-xs flex flex-col gap-1">
+          <p>
+            Created At: {new Date(task["created_at"]).toLocaleDateString()}{" "}
+            {new Date(task["created_at"]).toLocaleTimeString()}
+          </p>
+          <p>
+            Updated At: {new Date(task["updated_at"]).toLocaleDateString()}{" "}
+            {new Date(task["updated_at"]).toLocaleTimeString()}
+          </p>
+        </div>
       </CardFooter>
     </Card>
   );
@@ -55,13 +87,10 @@ function Task({ task }: { task: TaskType }) {
 export default function TasksPage() {
   let tasks: TaskType[] = use(getTasks());
   return (
-    <div>
-      <div className="flex gap-4">
-        {tasks.map((task) => (
-          <Task task={task} key={task.id} />
-        ))}
-      </div>
-      <AddTaskButton />
+    <div className="flex gap-20 p-20 flex-wrap">
+      {tasks.map((task) => (
+        <Task task={task} key={task.id} />
+      ))}
     </div>
   );
 }
