@@ -55,7 +55,7 @@ async def create_task(task: Task) -> dict:
     return {"error": "Task not created"}
 
 
-@tasks_router.get("/{id: str}")
+@tasks_router.get("/{id}")
 async def get_task(id: str) -> Task | dict:
     task = await tasks.find_one({"_id": ObjectId(id)})
     if task:
@@ -65,7 +65,7 @@ async def get_task(id: str) -> Task | dict:
     return {"error": "Task not found"}
 
 
-@tasks_router.put("/{id: str}")
+@tasks_router.put("/{id}")
 async def edit_task(id: str, task: Task) -> dict:
     task = task.dict(exclude_unset=True)
     del task["id"]
@@ -78,9 +78,14 @@ async def edit_task(id: str, task: Task) -> dict:
     return {"error": "Task not found"}
 
 
-@tasks_router.delete("/{id: str}")
+@tasks_router.delete("/{id}")
 async def delete_task(id: str) -> dict:
     deleted = await tasks.delete_one({"_id": ObjectId(id)})
     if deleted.deleted_count:
         return {"success": "Task deleted successfully"}
     return {"error": "Task not found"}
+
+
+# @tasks_router.options("/{id}")
+# async def options_task(id: str) -> dict:
+#     return {"allowed_methods": ["GET", "POST", "PUT", "DELETE"]}
