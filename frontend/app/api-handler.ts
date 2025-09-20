@@ -8,11 +8,11 @@ export async function getTasks() {
 }
 
 export async function getTask(id: string) {
-  return await fetch(`${url}/${id}`).then((res) => res.json());
+  return await fetch(`${url}${id}/`).then((res) => res.json());
 }
 
 export async function deleteTask(id: string) {
-  await fetch(`${url}/${id}`, {
+  await fetch(`${url}${id}/`, {
     method: "DELETE",
   });
   /* TODO Add toasts */

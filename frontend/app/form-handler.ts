@@ -26,7 +26,7 @@ export async function handleEditTask(data: FormData) {
   let newData = formatData(data);
   if (!newData.due_date) delete newData.due_date;
   console.log(newData);
-  await fetch(`${url}/${newData.id}`, {
+  await fetch(`${url}${newData.id}/`, {
     method: "PUT",
     body: JSON.stringify(newData),
     headers: {
