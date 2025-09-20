@@ -15,7 +15,7 @@ from models.task import Task
 
 load_dotenv()
 
-uri = f"mongodb://{quote_plus(os.getenv('MONGO_USERNAME'))}:{quote_plus(os.getenv('MONGO_PASSWORD'))}@localhost:27017/diddit"
+uri = quote_plus(os.getenv("MONGODB_URI"))
 
 client = AsyncIOMotorClient(uri, server_api=ServerApi("1"))
 diddit = client.diddit
