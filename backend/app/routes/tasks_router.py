@@ -45,7 +45,8 @@ async def get_all_tasks() -> List[Task]:
 @tasks_router.post("/")
 async def create_task(task: Task) -> dict:
     task = task.dict(exclude_unset=True)
-    del task["id"]
+    if "id" in task:
+        del task["id"]
     task["created_at"] = datetime.now()
     task["updated_at"] = datetime.now()
     task["due_date"] = task.get("due_date", None)
@@ -68,8 +69,10 @@ async def get_task(id: str) -> Task | dict:
 @tasks_router.put("/{id}")
 async def edit_task(id: str, task: Task) -> dict:
     task = task.dict(exclude_unset=True)
-    del task["id"]
-    del task["created_at"]
+    if "id" in task:
+        del task["id"]
+    if "created_at" in task:
+        del task["created_at"]
     task["updated_at"] = datetime.now()
     task["due_date"] = task.get("due_date", None)
     updated = await tasks.update_one({"_id": ObjectId(id)}, {"$set": task})

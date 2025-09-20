@@ -22,8 +22,11 @@ export async function handleAddTask(data: FormData) {
 }
 
 export async function handleEditTask(data: FormData) {
+  "use server";
   let newData = formatData(data);
-  await fetch(`${url}/edit/${newData.id}`, {
+  if (!newData.due_date) delete newData.due_date;
+  console.log(newData);
+  await fetch(`${url}/${newData.id}`, {
     method: "PUT",
     body: JSON.stringify(newData),
     headers: {
