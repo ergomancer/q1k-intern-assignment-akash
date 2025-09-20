@@ -1,7 +1,4 @@
-import asyncio
-import json
 import os
-
 from datetime import datetime
 from typing import List
 from bson.objectid import ObjectId
@@ -23,12 +20,7 @@ tasks = diddit.tasks
 
 tasks_router = APIRouter(prefix="/api/tasks", tags=["tasks"])
 
-task: Task = {
-    "title": "Sample Task",
-    "description": "This is a sample task",
-    "status": "in-progress",
-    "priority": "low",
-}
+task: Task
 
 
 @tasks_router.get("/")
@@ -87,8 +79,3 @@ async def delete_task(id: str) -> dict:
     if deleted.deleted_count:
         return {"success": "Task deleted successfully"}
     return {"error": "Task not found"}
-
-
-# @tasks_router.options("/{id}")
-# async def options_task(id: str) -> dict:
-#     return {"allowed_methods": ["GET", "POST", "PUT", "DELETE"]}
