@@ -1,11 +1,11 @@
-import { handleAddTask } from "@/app/form-handler";
+import { postAddTask } from "@/app/api-handlers/add-task";
 
 export default function NewTaskPage() {
   const statusOptions = ["completed", "in_progress", "pending"];
   const priorityOptions = ["low", "medium", "high"];
 
   return (
-    <form action={handleAddTask} className="flex flex-col gap-10 p-25">
+    <form action={postAddTask} className="flex flex-col gap-10 p-25">
       <div className="flex gap-10 items-center">
         <label htmlFor="title" className="w-50">
           Task Title

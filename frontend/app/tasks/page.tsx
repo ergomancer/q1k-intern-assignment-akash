@@ -12,7 +12,7 @@ import { Edit2, Timer } from "lucide-react";
 import Link from "next/link";
 import type { TaskType } from "@/lib/types";
 import DeleteAlert from "@/components/ui/delete-alert";
-import { getTasks } from "../api-handler";
+import { getTasks } from "@/app/api-handlers/get-tasks";
 import { use } from "react";
 import { Badge } from "@/components/ui/badge";
 

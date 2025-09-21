@@ -1,6 +1,6 @@
-import { handleEditTask } from "@/app/form-handler";
+import { putEditTask } from "@/app/api-handlers/edit-task";
 import { use } from "react";
-import { getTask } from "@/app/api-handler";
+import { getTask } from "@/app/api-handlers/get-tasks";
 
 export default function EditTaskPage({
   params,
@@ -13,7 +13,7 @@ export default function EditTaskPage({
   const statusOptions = ["completed", "in_progress", "pending"];
 
   return (
-    <form action={handleEditTask} className="flex flex-col gap-10 p-25">
+    <form action={putEditTask} className="flex flex-col gap-10 p-25">
       <div className="flex gap-10 items-center">
         <label htmlFor="title" className="w-50">
           Task Title

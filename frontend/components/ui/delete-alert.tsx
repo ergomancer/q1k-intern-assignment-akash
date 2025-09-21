@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { deleteTask } from "@/app/api-handler";
+import { deleteTask } from "@/app/api-handlers/delete-task";
 
 export default function DeleteAlert({ id }: { id: string }) {
   return (

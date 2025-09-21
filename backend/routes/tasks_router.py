@@ -22,6 +22,13 @@ tasks_router = APIRouter(prefix="/api/tasks", tags=["tasks"])
 
 task: Task
 
+# /api/tasks
+
+
+@tasks_router.options("/")
+async def options_task() -> dict:
+    return {"allowed_methods": ["GET", "POST"]}
+
 
 @tasks_router.get("/")
 async def get_all_tasks() -> List[Task]:
@@ -46,6 +53,14 @@ async def create_task(task: Task) -> dict:
     if inserted.inserted_id:
         return {"id": str(inserted.inserted_id)}
     return {"error": "Task not created"}
+
+
+# /api/tasks/{id}
+
+
+@tasks_router.options("/{id}")
+async def options_task(id: str) -> dict:
+    return {"allowed_methods": ["GET", "PUT", "DELETE"]}
 
 
 @tasks_router.get("/{id}")
