@@ -20,13 +20,14 @@ Check out [Diddit](ergomancer-diddit.vercel.app) now!
 
 ### Limitations/Bugs
 
-- [ ] Add/Delete task function not working on the deployed version
+- [ ] Add task function not working on the deployed version
 - [ ] No client side form validation
 - [ ] Not mobile ready
 - [ ] No search function
 - [ ] No sort function
 - [ ] No filter function
 - [ ] No pagination
+- [ ] No loading screens of skeleton UI
 
 ### Roadmap
 

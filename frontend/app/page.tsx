@@ -6,26 +6,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import AddTaskButton from "@/components/ui/add-task-button";
-
-function TaskOverview({
-  text,
-  count,
-  color,
-}: {
-  text: string;
-  count: number;
-  color: string;
-}) {
-  return (
-    <div className="flex justify-between border-b p-5">
-      <span>{text}</span>
-      <Badge className={`rounded-full ${color} text-md w-10`}>{count}</Badge>
-    </div>
-  );
-}
+import TaskOverview from "@/components/ui/task-overview";
 
 export default function Home() {
   const overviewHeads = [

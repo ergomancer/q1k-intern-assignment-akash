@@ -14,17 +14,18 @@ load_dotenv()
 
 uri = os.getenv("MONGODB_URI")
 
+# connect to MongoDB
 client = AsyncIOMotorClient(uri, server_api=ServerApi("1"))
 diddit = client.diddit
 tasks = diddit.tasks
 
+# create tasks router
 tasks_router = APIRouter(prefix="/api/tasks", tags=["tasks"])
 
 task: Task
 
+
 # /api/tasks
-
-
 @tasks_router.options("/")
 async def options_task() -> dict:
     return {"allowed_methods": ["GET", "POST"]}
@@ -56,8 +57,6 @@ async def create_task(task: Task) -> dict:
 
 
 # /api/tasks/{id}
-
-
 @tasks_router.options("/{id}")
 async def options_task(id: str) -> dict:
     return {"allowed_methods": ["GET", "PUT", "DELETE"]}
