@@ -43,20 +43,15 @@ async def get_all_tasks() -> List[Task]:
 
 @tasks_router.post("/")
 async def create_task(task: Task) -> dict:
-    print("Creating task\n", task)
     task = task.dict(exclude_unset=True)
     if "id" in task:
         del task["id"]
     task["created_at"] = datetime.now()
     task["updated_at"] = datetime.now()
-    task["due_date"] = task["due_date"] if "due_date" in task else None
-    print("Final Task dict\n", task)
+    task["due_date"] = task.get("due_date", None)
     inserted = await tasks.insert_one(task)
-    print("DB return\n", inserted)
     if inserted.inserted_id:
-        print("Task created with ID:", str(inserted.inserted_id))
         return {"id": str(inserted.inserted_id)}
-    print("Task not created")
     return {"error": "Task not created"}
 
 

@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "http://diddit.up.railway.app/api/:path*"
+    }
+  ]
+}
