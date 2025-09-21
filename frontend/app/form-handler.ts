@@ -10,7 +10,7 @@ export async function handleAddTask(data: FormData) {
   "use server";
   let newData = formatData(data);
   if (!newData.due_date) delete newData.due_date;
-  await fetch(url, {
+  await fetch(`${url}/`, {
     method: "POST",
     body: JSON.stringify(newData),
     headers: {
