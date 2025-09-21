@@ -10,7 +10,7 @@ export async function putEditTask(data: FormData) {
     method: "PUT",
     body: JSON.stringify(newData),
     headers: {
-      "Content-type": "application/json",
+      "Content-Type": "application/json",
     },
   });
   /*TODO Add toasts */

@@ -13,7 +13,7 @@ export async function postAddTask(data: FormData) {
     body: JSON.stringify(newData),
     cache: "no-store",
     headers: {
-      "Content-type": "application/json",
+      "Content-Type": "application/json",
     },
   });
   /*TODO Add toasts */
